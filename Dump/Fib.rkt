@@ -5,17 +5,17 @@
  | @version 02.01.2021
  |#
 (define a (make-vector 1000 0))
-(define (fib x)
+(define fib (lambda (x)
      (cond
           ((= x 0) 0)
           ((= x 1) 1)
           ((not (= (vector-ref a x) 0)) (vector-ref a x))
-          (else (recurse x))))
-(define (recurse x)
+          (else (recurse x)))))
+(define recurse(lambda (x)
     (begin
          (define s (+ (fib (- x 1)) (fib (- x 2))))
               (vector-set! a x s)
-                   s))
+                   s)))
 (display "Hello, friend.")
 (newline)
 (display "Enter a number and I will generate the corresponding fibonacci value.")
