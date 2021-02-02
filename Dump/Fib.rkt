@@ -4,7 +4,7 @@
  | @author Ellie Moore
  | @version 02.01.2021
  |#
-(define a (make-vector 1000 0))
+(define a (make-vector 1000))
 (define fib (lambda (x)
      (cond
           ((= x 0) 0)
@@ -16,12 +16,15 @@
          (define s (+ (fib (- x 1)) (fib (- x 2))))
               (vector-set! a x s)
                    s)))
+(define || (lambda(x y)
+    (cond (x #t)
+          (else y))))
 (display "Hello, friend.")
 (newline)
 (display "Enter a number and I will generate the corresponding fibonacci value.")
 (newline)
 (define x (read))
 (cond
-    ((> x 999) (display "Error: input must be between 0 and 999 inclusive."))
-    ((< x 0) (display "Error: input must be between 0 and 999 inclusive."))
+    ((or (< x 0) (> x 999))
+         (display "Error: input must be between 0 and 999 inclusive."))
     (else (fib x)))
